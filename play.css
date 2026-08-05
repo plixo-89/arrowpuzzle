@@ -1,0 +1,333 @@
+/* Play Mode Specific Styles (Minimalist Tap Away) */
+body.play-mode {
+    background: #ffffff;
+    color: #1a1a2e;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Outfit', sans-serif;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    background: #ffffff;
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 10;
+}
+
+.btn-back,
+.btn-icon {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-back:hover,
+.btn-icon:hover {
+    color: #475569;
+}
+
+.level-indicator {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+/* Hearts */
+.hearts-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 10;
+    background: #ffffff;
+}
+
+.heart {
+    color: #ef4444;
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.heart.empty {
+    opacity: 0.2;
+    filter: grayscale(100%);
+}
+
+/* Board Area */
+.board-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-board {
+    position: relative;
+    width: 300px;
+    /* Will be dynamically sized by JS */
+    height: 300px;
+    transition: transform 0.3s ease;
+}
+
+/* Dot Grid Background Container */
+.dot-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+/* Individual permanent dots */
+.static-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #cbd5e1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    /* Ensures left/top centers the dot */
+}
+
+/* Pieces Container */
+.pieces-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Minimalist Arrow Piece */
+.piece {
+    position: absolute;
+    width: 45px;
+    /* CELL_SIZE */
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Slow, smooth ease-in transition for the flying out animation */
+    transition: transform 1.2s ease-in, opacity 1.0s ease-in;
+    z-index: 3;
+}
+
+.piece:hover {
+    filter: drop-shadow(0 4px 6px rgba(99, 102, 241, 0.3));
+}
+
+/* SVG Styling inside piece */
+.piece svg {
+    width: 100%;
+    height: 100%;
+    stroke: #0f172a;
+    stroke-width: 8px;
+    /* Matched the thicker lines of the screenshot */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: stroke 0.2s;
+}
+
+/* Fill the arrowhead */
+.piece svg path.arrow-head {
+    fill: #0f172a;
+    stroke: none;
+}
+
+/* Animations */
+@keyframes bump {
+
+    0%,
+    100% {
+        transform: rotate(var(--rot)) translateY(0);
+    }
+
+    50% {
+        transform: rotate(var(--rot)) translateY(15px);
+    }
+}
+
+.piece.bumping {
+    animation: bump 0.4s ease-in-out both;
+}
+
+.piece.bumping svg {
+    stroke: #ef4444;
+    /* Turn red on error */
+}
+
+.piece.bumping svg path.arrow-head {
+    fill: #ef4444;
+}
+
+/* When flying out, z-index needs to be high */
+.piece.flying {
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Footer Controls */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    z-index: 10;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.hint-count {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.zoom-slider-container {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    gap: 0.5rem;
+}
+
+.zoom-slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    outline: none;
+}
+
+.zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+}
+
+.zoom-icon {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 90%;
+    width: 350px;
+}
+
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.modal-text {
+    color: #64748b;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}

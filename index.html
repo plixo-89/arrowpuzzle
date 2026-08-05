@@ -1,52 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arrow Puzzle - A futuristic directional arrow puzzle game.">
-    <meta name="theme-color" content="#03030f">
-    <meta property="og:title" content="Arrow Puzzle">
-    <meta property="og:description" content="Solve the ultimate directional arrow puzzles.">
+    <title>Arrow Puzzle - Relax. Think. Solve.</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Experience Arrow Puzzle, a premium mobile puzzle game. Relax, think, and solve hundreds of challenging levels. Download now on iOS and Android.">
+    <meta name="keywords"
+        content="arrow puzzle, puzzle game, brain teaser, mobile game, logic game, offline puzzle game">
+    <link rel="canonical" href="https://arrowpuzzle.example.com/">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#f8fafc">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Arrow Puzzle - Relax. Think. Solve.">
+    <meta property="og:description"
+        content="Experience Arrow Puzzle, a premium mobile puzzle game. Relax, think, and solve hundreds of challenging levels.">
     <meta property="og:type" content="website">
-    <title>Arrow Puzzle</title>
-    
+    <meta property="og:url" content="https://arrowpuzzle.example.com/">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1614294149010-950b698f72c0?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Arrow Puzzle - Relax. Think. Solve.">
+    <meta name="twitter:description"
+        content="Experience Arrow Puzzle, a premium mobile puzzle game. Download now on iOS and Android.">
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1614294149010-950b698f72c0?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="home">
-    <canvas id="bg-canvas"></canvas>
-    <div class="hud-scanline"></div>
-    <div class="hud-corners">
-        <div class="corner top-left"></div>
-        <div class="corner top-right"></div>
-        <div class="corner bottom-left"></div>
-        <div class="corner bottom-right"></div>
-    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <main class="hero-container">
-        <section class="hero-content">
-            <h1 class="glitch-text" data-text="Arrow Puzzle">Arrow Puzzle</h1>
-            <p class="tagline">Master the flow. Solve the ultimate directional arrow puzzles.</p>
-            <div class="cta-group">
-                <button class="btn btn-primary" aria-label="Play Arrow Puzzle Now">
-                    <span class="btn-text">Play Now</span>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "VideoGame",
+          "name": "Arrow Puzzle",
+          "description": "A relaxing directional puzzle game with hundreds of levels.",
+          "genre": ["Puzzle", "Logic"],
+          "playMode": "SinglePlayer",
+          "applicationCategory": "Game",
+          "operatingSystem": "Android, iOS",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Arrow Puzzle?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Arrow Puzzle is a premium, mind-bending logic game where you tap, rotate, and connect arrows to solve intricate puzzles."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is it free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Arrow Puzzle is completely free to play with optional in-app purchases."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I play offline?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely! You can enjoy Arrow Puzzle anywhere, anytime without an internet connection."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">➤</span> Arrow Puzzle
+            </a>
+            <nav class="nav-links" id="nav-links">
+                <a href="#hero" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="#faq">FAQ</a>
+                <a href="play.html" class="btn btn-outline nav-cta">Play Online</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#download" class="btn btn-primary d-none-mobile">Download</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-                <button class="btn btn-secondary" aria-label="Watch Arrow Puzzle Trailer">
-                    <span class="btn-text">Watch Trailer</span>
-                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero section">
+            <div class="hero-bg"></div>
+            <div class="container hero-container">
+                <div class="hero-content animate-on-scroll">
+                    <div class="hero-rating animate-on-scroll">
+                        <span class="stars">✨</span> The Ultimate Brain-Teasing Puzzle
+                    </div>
+                    <h1 class="hero-title">Arrow Puzzle</h1>
+                    <h2 class="hero-subtitle">Relax. Think. Solve.</h2>
+                    <p class="hero-description">Play the best arrow puzzle game to relax and train your brain. Enjoy
+                        hundreds of fun logic puzzles designed to test your mind and keep you entertained.</p>
+                    <div class="hero-cta-group">
+
+                        <a href="#" class="btn btn-store store-google-light hover-lift"
+                            aria-label="Get it on Google Play">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                                alt="Google Play" class="store-icon-img">
+                            <span class="store-text">
+                                <small>GET IT ON</small>
+                                <strong>Google Play</strong>
+                            </span>
+                        </a>
+                        <a href="play.html" class="btn play-online-btn hover-lift">Play Online</a>
+                    </div>
+                </div>
+                <div class="hero-visual animate-on-scroll delay-1">
+                    <div class="hero-gallery">
+                        <img src="images/arrow-puzzle-gameplay-level.png" alt="Gameplay screenshot 1"
+                            class="gallery-card card-1">
+                        <img src="images/tap-away-logic-puzzle.png" alt="Gameplay screenshot 2"
+                            class="gallery-card card-2">
+                        <img src="images/3d-brain-training-game.png" alt="Gameplay screenshot 3"
+                            class="gallery-card card-3">
+                        <img src="images/free-arrow-puzzle-app.png" alt="Gameplay screenshot 4"
+                            class="gallery-card card-4">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="hero-visual" aria-hidden="true">
-            <div class="arrow-grid" id="arrowGrid">
-                <!-- Arrows generated by JS -->
+        <!-- Gameplay Video Section -->
+        <section id="video" class="video-section section">
+            <div class="container animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Experience the Flow</h2>
+                    <p class="section-subtitle">Watch Arrow Puzzle in action</p>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-thumbnail"
+                        style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80');">
+                        <button class="play-btn" aria-label="Play Gameplay Video">
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features section">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <h2 class="section-title">Why You'll Love It</h2>
+                    <p class="section-subtitle">Designed for puzzle enthusiasts of all skill levels.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">🧩</div>
+                        <h3 class="feature-title">Hundreds of Levels</h3>
+                        <p class="feature-desc">Play hundreds of free logic puzzles. From easy levels to hard brain
+                            games, there is a puzzle for everyone.</p>
+                    </div>
+                    <div class="feature-card animate-on-scroll delay-1">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Easy Controls</h3>
+                        <p class="feature-desc">Simply tap and swipe to play. Our arrow puzzle game is easy to learn and
+                            fun for all ages.</p>
+                    </div>
+                    <div class="feature-card animate-on-scroll delay-2">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Play Offline</h3>
+                        <p class="feature-desc">No wifi? No problem! You can play this free puzzle game anywhere and
+                            anytime without internet.</p>
+                    </div>
+                    <div class="feature-card animate-on-scroll delay-3">
+                        <div class="feature-icon">🏆</div>
+                        <h3 class="feature-title">Daily Brain Training</h3>
+                        <p class="feature-desc">Enjoy new logic puzzles every day. Keep your mind sharp and earn daily
+                            rewards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How To Play Section -->
+        <section id="how-to-play" class="how-to-play section bg-alt">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <h2 class="section-title">How to Play</h2>
+                    <p class="section-subtitle">Four simple steps to mastery.</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card animate-on-scroll">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">👀</div>
+                        <h3 class="step-title">Scan the Board</h3>
+                        <p>Look at the puzzle grid to see arrows pointing in different ways.</p>
+                    </div>
+                    <div class="step-card animate-on-scroll delay-1">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">👆</div>
+                        <h3 class="step-title">Find Free Arrows</h3>
+                        <p>Find an arrow that has a clear path to the edge of the board.</p>
+                    </div>
+                    <div class="step-card animate-on-scroll delay-2">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">🔓</div>
+                        <h3 class="step-title">Tap to Release</h3>
+                        <p>Tap the free arrow to watch it fly off the screen.</p>
+                    </div>
+                    <div class="step-card animate-on-scroll delay-3">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">🎉</div>
+                        <h3 class="step-title">Clear the Grid</h3>
+                        <p>Clear all the arrows in the right order to beat the level!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="screenshots section">
+            <div class="container animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Visual Excellence</h2>
+                    <p class="section-subtitle">A sneak peek into the beautiful world of Arrow Puzzle.</p>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-btn prev-btn" aria-label="Previous Screenshot">❮</button>
+                    <div class="carousel-track-wrapper">
+                        <ul class="carousel-track" id="carousel-track">
+                            <li class="carousel-slide current-slide">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&h=800&q=80"
+                                    alt="Gameplay Screenshot 1" loading="lazy">
+                            </li>
+                            <li class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1614294149010-950b698f72c0?auto=format&fit=crop&w=400&h=800&q=80"
+                                    alt="Gameplay Screenshot 2" loading="lazy">
+                            </li>
+                            <li class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&h=800&q=80"
+                                    alt="Gameplay Screenshot 3" loading="lazy">
+                            </li>
+                            <li class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=400&h=800&q=80"
+                                    alt="Gameplay Screenshot 4" loading="lazy">
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="carousel-btn next-btn" aria-label="Next Screenshot">❯</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="reviews section bg-alt">
+            <div class="container">
+                <div class="section-header text-center animate-on-scroll">
+                    <h2 class="section-title">Player Reviews</h2>
+                    <p class="section-subtitle">See what our community thinks.</p>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card animate-on-scroll">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Absolutely brilliant! The difficulty curve is perfect, and the
+                            aesthetics are stunning. I play it every night before bed."</p>
+                        <p class="review-author">- PuzzleMaster99</p>
+                    </div>
+                    <div class="review-card animate-on-scroll delay-1">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"One of the best logic games on the store. It's incredibly satisfying to
+                            connect all the arrows. Highly recommend!"</p>
+                        <p class="review-author">- Sarah J.</p>
+                    </div>
+                    <div class="review-card animate-on-scroll delay-2">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Sleek design and no annoying ads interrupting gameplay. A true AAA
+                            puzzle experience on mobile."</p>
+                        <p class="review-author">- TechGamerX</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq section">
+            <div class="container animate-on-scroll">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle">Everything you need to know.</p>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-question">What is Arrow Puzzle?</summary>
+                        <div class="faq-answer">Arrow Puzzle is a premium logic game where you tap and rotate arrows to
+                            connect pathways and clear the board. It's designed to be both relaxing and intellectually
+                            stimulating.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do you play?</summary>
+                        <div class="faq-answer">The goal is to align all arrows so they point to a valid target. Tap to
+                            select, rotate to aim, and connect the flow to win the level!</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is it free?</summary>
+                        <div class="faq-answer">Yes, Arrow Puzzle is completely free to download and play. We offer
+                            optional in-app purchases for cosmetic items and hints.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I play offline?</summary>
+                        <div class="faq-answer">Absolutely. The game is fully functional offline, making it perfect for
+                            commutes and flights.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is it available on Android and iPhone?</summary>
+                        <div class="faq-answer">Yes! Arrow Puzzle is available on both the Google Play Store for Android
+                            devices and the Apple App Store for iOS devices.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I play online without downloading?</summary>
+                        <div class="faq-answer">Yes, we offer a lightweight web version. Simply click the "Play Online"
+                            button to start playing instantly in your browser.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How many levels are included?</summary>
+                        <div class="faq-answer">The game currently features over 500 handcrafted levels, plus
+                            procedurally generated daily challenges.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is the game suitable for kids?</summary>
+                        <div class="faq-answer">Yes, it's rated for all ages. It's a great tool for developing spatial
+                            reasoning and logical thinking skills in children.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Does the game contain ads?</summary>
+                        <div class="faq-answer">We respect our players. There are no forced banner or pop-up ads. You
+                            can choose to watch rewarded videos for extra hints if you wish.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="download" class="cta-section section text-center">
+            <div class="container animate-on-scroll">
+                <h2 class="cta-title">Ready to Challenge Your Mind?</h2>
+                <p class="cta-subtitle">Join millions of players and start solving today.</p>
+                <div class="cta-buttons">
+
+                    <a href="#" class="btn btn-store store-google-light hover-lift">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"
+                            alt="Google Play" class="store-icon-img">
+                        <span class="store-text">
+                            <small>GET IT ON</small>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
+                <div class="mt-4">
+                    <a href="play.html" class="btn play-online-btn hover-lift">Or Play Online Instantly</a>
+                </div>
             </div>
         </section>
     </main>
-    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">➤</span> Arrow Puzzle
+                    </a>
+                    <p class="footer-desc">The ultimate relaxing puzzle experience. Master the flow.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter" class="social-icon">𝕏</a>
+                        <a href="#" aria-label="Facebook" class="social-icon">f</a>
+                        <a href="#" aria-label="Instagram" class="social-icon">IG</a>
+                        <a href="#" aria-label="Discord" class="social-icon">D</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Game</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-to-play">How to Play</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arrow Puzzle Game Studios. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
+
 </html>
